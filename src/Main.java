@@ -33,8 +33,8 @@ public class Main {
                     spendings += moneySpend;
                     break;
                 case 3:
-                    double tax1 = taxEarnings(earnings,spendings);
-                    double tax2 = taxEarningsMinusSpendings(earnings,spendings);
+                    long tax1 = taxEarnings(earnings,spendings);
+                    long tax2 = taxEarningsMinusSpendings(earnings,spendings);
                     taxСalculation(tax1, tax2);
                     break;
                 case 4: //Справка
@@ -49,8 +49,8 @@ public class Main {
         }
         System.out.println("Программа завершена!");
     }
-    public static double taxEarnings(long earnings, long spendings) {
-        double tax = earnings * 6 / 100;
+    public static long taxEarnings(long earnings, long spendings) {
+        long tax = earnings * 6 / 100;
         if (tax >= 0) {
             return tax;
         } else {
@@ -58,8 +58,8 @@ public class Main {
         }
     }
 
-    public static double taxEarningsMinusSpendings(long earnings, long spendings) {
-        double tax = (earnings - spendings) * 15 / 100;
+    public static long taxEarningsMinusSpendings(long earnings, long spendings) {
+        long tax = (earnings - spendings) * 15 / 100;
         if (tax >= 0) {
             return tax;
         } else {
