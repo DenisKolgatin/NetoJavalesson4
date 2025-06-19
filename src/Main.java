@@ -33,10 +33,8 @@ public class Main {
                     spendings += moneySpend;
                     break;
                 case 3:
-                    double tax1 = 0;
-                    tax1 = earnings * 0.06;
-                    double tax2 = 0;
-                    tax2 = taxEarningsMinusSpendings(earnings,spendings);
+                    double tax1 = taxEarnings(earnings,spendings);
+                    double tax2 = taxEarningsMinusSpendings(earnings,spendings);
                     taxСalculation(tax1, tax2);
                     break;
                 case 4: //Справка
@@ -51,6 +49,15 @@ public class Main {
         }
         System.out.println("Программа завершена!");
     }
+    public static double taxEarnings(long earnings, long spendings) {
+        double tax = earnings * 6 / 100;
+        if (tax >= 0) {
+            return tax;
+        } else {
+            return 0;
+        }
+    }
+
     public static double taxEarningsMinusSpendings(long earnings, long spendings) {
         double tax = (earnings - spendings) * 15 / 100;
         if (tax >= 0) {
@@ -62,27 +69,20 @@ public class Main {
 
     public static void taxСalculation(double tax1, double tax2) {
         if (tax1<tax2) {
-            earningsTax(tax1, tax2);
+            double tax = tax2 - tax1;
+            System.out.println("Мы советуем вам УСН доходы");
+            System.out.println("Ваш налог составит: " + tax1 + " рублей");
+            System.out.println("Налог на другой системе: " + tax2 + " рублей");
+            System.out.println("Экономия: "  + tax + " рублей");
         } else if (tax1>tax2) {
-            earningsAndSpendingTax(tax1, tax2);
+            double tax = tax1 - tax2;
+            System.out.println("Мы советуем вам УСН доходы минус расходы:");
+            System.out.println("Ваш налог составит: " + tax2 + " рублей");
+            System.out.println("Налог на другой системе: " + tax1 + " рублей");
+            System.out.println("Экономия: "  + tax + " рублей");
         } else {
             System.out.println("Обе налоговые системы равнозначны с вашими доходами и расходами. Выберете любую из них");
         }
-    }
-
-    public static void earningsTax(double tax1, double tax2) {
-        double tax = tax2 - tax1;
-        System.out.println("Мы советуем вам УСН доходы");
-        System.out.println("Ваш налог составит: " + tax1 + " рублей");
-        System.out.println("Налог на другой системе: " + tax2 + " рублей");
-        System.out.println("Экономия: "  + tax + " рублей");
-    }
-    public static void earningsAndSpendingTax(double tax1, double tax2) {
-        double tax = tax1 - tax2;
-        System.out.println("Мы советуем вам УСН доходы минус расходы:");
-        System.out.println("Ваш налог составит: " + tax2 + " рублей");
-        System.out.println("Налог на другой системе: " + tax1 + " рублей");
-        System.out.println("Экономия: "  + tax + " рублей");
     }
 }
 
